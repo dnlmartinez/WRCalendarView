@@ -10,7 +10,7 @@ import UIKit
 class WRGridLine: UICollectionReusableView {
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = UIColor(hexString: "dadada")
+        backgroundColor = UIColor(hexString: "b3b3b3")
     }
     
     required init?(coder aDecoder: NSCoder) {

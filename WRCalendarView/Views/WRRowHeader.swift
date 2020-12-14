@@ -22,8 +22,12 @@ class WRRowHeader: UICollectionReusableView {
             if let date = date,
                 calendar.component(.hour, from: date) != 0 && calendar.component(.hour, from: date) != 24 {
                 timeLbl.text = dateFormatter.string(from: date)
+                timeLbl.textColor = UIColor.white
+                timeLbl.backgroundColor = UIColor.black
             } else {
                 timeLbl.text = ""
+                timeLbl.textColor = UIColor.white
+                timeLbl.backgroundColor = UIColor.black
             }
         }
     }

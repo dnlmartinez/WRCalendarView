@@ -67,7 +67,7 @@ public class WRWeekView: UIView {
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.backgroundColor = UIColor.white
+        collectionView.backgroundColor = UIColor.black
         addSubview(collectionView)
 
         let views: [String: AnyObject] = ["collectionView": collectionView]
@@ -122,7 +122,7 @@ public class WRWeekView: UIView {
         flowLayout.sectionWidth = (frame.width - flowLayout.rowHeaderWidth) / CGFloat(daysToShowOnScreen)
     }
     
-    func tapHandler(_ recognizer: UITapGestureRecognizer) {
+    @objc func tapHandler(_ recognizer: UITapGestureRecognizer) {
         let point = recognizer.location(in: self)
         
         var components = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: getDateForX(point.x))
@@ -142,6 +142,11 @@ public class WRWeekView: UIView {
     // MARK: - events
     public func setEvents(events: [WREvent]) {
         self.events = events
+        forceReload(true)
+    }
+    
+    public func clearData(){
+        self.events = [WREvent]()
         forceReload(true)
     }
     
@@ -217,7 +222,6 @@ public class WRWeekView: UIView {
             self.forceReload(false)
             self.setCurrentPage(self.currentPage, animated: animated)
             
-            // 처음 화면이 보여지거나 schedule type이 바뀔때만 현재 시간 보여줌
             if self.isFirst {
                 self.flowLayout.scrollCollectionViewToCurrentTime()
                 self.isFirst = false
@@ -365,7 +369,7 @@ extension WRWeekView: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     public func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        // y방향 스크롤시에는 페이징 불필요
+
         if velocity.x == 0 && velocity.y != 0 { return }
         
         targetContentOffset.pointee = scrollView.contentOffset

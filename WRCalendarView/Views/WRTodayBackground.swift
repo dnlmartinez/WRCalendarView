@@ -10,7 +10,7 @@ import UIKit
 class WRTodayBackground: UICollectionReusableView {
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = UIColor(hexString: "F5F8FD")
+        backgroundColor = UIColor(hexString: "000000")
     }
     
     required init?(coder aDecoder: NSCoder) {
